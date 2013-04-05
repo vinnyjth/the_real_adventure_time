@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Content:</b>
+  <%= @page.content %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @page.date %>
+</p>
+
+<p>
+  <b>Stamp:</b>
+  <%= @page.stamp %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @page.title %>
+</p>
+
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %> |
+<%= link_to 'Create Branch', new_page_path(:root_id => @page.id) %>

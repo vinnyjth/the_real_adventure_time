@@ -15,7 +15,7 @@
     <td><%= adventure.name %></td>
     <td><%= adventure.male %></td>
     <td><%= adventure.route %></td>
-    <td><%= link_to 'Show', adventure %></td>
+    <td><%= link_to 'Show', adventure, :class => 'button tiny secondary' %></td>
     <td><%= link_to 'Edit', edit_adventure_path(adventure) %></td>
     <td><%= link_to 'Destroy', adventure, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
@@ -24,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New Adventure', new_adventure_path %>
+<%= link_to 'New Adventure', new_adventure_path, :class => 'button' %>

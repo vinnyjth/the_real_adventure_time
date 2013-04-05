@@ -1,4 +1,7 @@
 TheRealAdventureTime::Application.routes.draw do
+  resources :pages
+
+
   resources :adventures
 
 
