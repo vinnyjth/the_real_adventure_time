@@ -28,7 +28,8 @@ class PagesController < ApplicationController
     @page = Page.new
     if(params.has_key?(:root_id)) 
       @root = Page.find(params[:root_id])
-      @page.paths.build(:page_from_id => @root.id)
+      @page.paths.build()
+
     end
 
     respond_to do |format|

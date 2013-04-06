@@ -29,9 +29,9 @@
   </div>
     <%= f.fields_for :paths do |builder| %>
       <div class="field">
-        <%= builder.hidden_field :page_to_id,:value => @page.id %>
         <%= builder.label :question %><br />
         <%= builder.text_field :question %>
+        <%= builder.hidden_field :page_from_id, :value => @root.id %>
       </div>
     <% end %>
   <div class="actions">
