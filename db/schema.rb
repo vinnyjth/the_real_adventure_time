@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(:version => 20130404131356) do
   end
 
   create_table "paths", :force => true do |t|
-    t.integer  "page_from_id", :null => false
-    t.integer  "page_to_id",   :null => false
+    t.integer  "page_from_id"
+    t.integer  "page_to_id"
     t.string   "question"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

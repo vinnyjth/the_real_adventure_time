@@ -25,14 +25,3 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-    <%= f.fields_for :paths do |builder| %>
-      <div class="field">
-        <%= builder.label :question %><br />
-        <%= builder.text_field :question %>
-        <%= builder.hidden_field :page_from_id, :value => @root.id %>
-      </div>
-    <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

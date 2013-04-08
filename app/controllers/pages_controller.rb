@@ -42,6 +42,7 @@ class PagesController < ApplicationController
   def edit
     @page = Page.find(params[:id])
         @pages = Page.all
+        
   end
 
   # POST /pages
