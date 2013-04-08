@@ -1,26 +1,16 @@
 <p id="notice"><%= notice %></p>
+<h1 class="text-center">
+  <b>  <%= @page.title %></b>
 
+</h1>
 <p>
-  <b>Content:</b>
-  <%= @page.content %>
+  <%= @page.content.bbcode_to_html.html_safe %>
 </p>
 
-<p>
-  <b>Date:</b>
-  <%= @page.date %>
-</p>
-
-<p>
-  <b>Stamp:</b>
-  <%= @page.stamp %>
-</p>
-
-<p>
-  <b>Title:</b>
-  <%= @page.title %>
-</p>
-
-
+<% @page.paths.each do |path| %>
+<%= link_to path.question, Page.find(path.page_to_id), :class => 'small button keep-white' %>
+<br />
+<% end %>
 <%= link_to 'Edit', edit_page_path(@page) %> |
 <%= link_to 'Back', pages_path %> |
 <%= link_to 'Create Branch', new_page_path(:root_id => @page.id) %>

@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
 
-  attr_accessible :content, :date, :stamp, :title, :paths_attributes
+  attr_accessible :content, :stamp, :title, :paths_attributes
 
 
 

@@ -1,3 +1,20 @@
 .button {
 	vertical-align: middle;
 }
+.middleofscreen {
+	margin-top: 65px;
+}
+.bgsky {
+	background-image: url('sky.jpg');
+	width: 100%;
+	height: 100%;
+	position: fixed;
+}
+.parchment {
+	box-shadow:
+  rgba(0,0,0,0.4)
+  10px 10px;
+}
+.keep-white {
+	color: #fff !important;
+}

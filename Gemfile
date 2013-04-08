@@ -22,7 +22,8 @@ group :assets do
 
   gem 'zurb-foundation', '~> 4.0.0'
 end
-
+gem 'tinymce-rails'
+gem 'ruby-bbcode'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
