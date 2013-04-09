@@ -3,7 +3,7 @@ TheRealAdventureTime::Application.routes.draw do
 
 
   resources :adventures
-
+  root :to => 'pages#index' 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
