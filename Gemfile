@@ -23,6 +23,7 @@ group :assets do
 
   gem 'zurb-foundation', '~> 4.0.0'
 end
+gem 'devise'
 gem 'tinymce-rails'
 gem 'ruby-bbcode'
 gem 'jquery-rails'

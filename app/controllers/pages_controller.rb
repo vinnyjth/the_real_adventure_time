@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show ]
   # GET /pages
   # GET /pages.json
+
   def index
     @pages = Page.all
 
@@ -41,8 +43,7 @@ class PagesController < ApplicationController
   # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
-        @pages = Page.all
-        
+    @pages = Page.all
   end
 
   # POST /pages
@@ -50,14 +51,17 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(params[:page])
     @pages = Page.all
+    @page.group = Group.find(params[:group_id])
 
-    respond_to do |format|
-      if @page.save
-        format.html { redirect_to @page, :notice => 'Page was successfully created.' }
-        format.json { render :json => @page, :status => :created, :location => @page }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @page.errors, :status => :unprocessable_entity }
+    if current_user
+      respond_to do |format|
+        if @page.save
+          format.html { redirect_to @page, :notice => 'Page was successfully created.' }
+          format.json { render :json => @page, :status => :created, :location => @page }
+        else
+          format.html { render :action => "new" }
+          format.json { render :json => @page.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end
@@ -66,14 +70,15 @@ class PagesController < ApplicationController
   # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
-
-    respond_to do |format|
-      if @page.update_attributes(params[:page])
-        format.html { redirect_to @page, :notice => 'Page was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @page.errors, :status => :unprocessable_entity }
+    if @page.group.users.includes? current_user
+      respond_to do |format|
+        if @page.update_attributes(params[:page])
+          format.html { redirect_to @page, :notice => 'Page was successfully updated.' }
+          format.json { head :no_content }
+        else
+          format.html { render :action => "edit" }
+          format.json { render :json => @page.errors, :status => :unprocessable_entity }
+        end
       end
     end
   end

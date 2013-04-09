@@ -33,6 +33,16 @@
         <%= builder.hidden_field :page_from_id, :value => @root.id %>
       </div>
     <% end %>
+
+    <%= f.fields_for :group do |group_builder| %>
+
+        <% current_user.groups.each do |group| %>
+          <%= label_tag group.title %>
+          <%= radio_button_tag :group_id, group.id %>
+
+        <% end %>
+    <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

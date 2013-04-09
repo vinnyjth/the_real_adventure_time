@@ -24,7 +24,11 @@
 </div>
 	<div class="row">
 		<div class="small-11 small-centered middleofscreen columns panel parchment">
+			  <%= render 'devise/menu/registration_items' %>|
+  <%= render 'devise/menu/login_items' %>
+
   <%= yield %>
+  	</div>
   </div>
 
   <%= javascript_include_tag "application" %>

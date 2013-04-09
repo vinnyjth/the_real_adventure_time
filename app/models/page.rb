@@ -10,5 +10,7 @@ class Page < ActiveRecord::Base
   has_many :pages, :through => :reverse_paths, :source => :page_to
   has_many :reverse_pages, :through => :paths, :source => :page_from
 
+  belongs_to :group
+
   accepts_nested_attributes_for  :paths, :reverse_paths, :pages, :reverse_pages
 end
