@@ -11,26 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409063953) do
-
-  create_table "adventures", :force => true do |t|
-    t.string   "name"
-    t.boolean  "male"
-    t.integer  "route"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20130409214645) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
   end
 
   create_table "memberships", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
+    t.integer  "user_id",    :null => false
+    t.integer  "group_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -39,14 +32,14 @@ ActiveRecord::Schema.define(:version => 20130409063953) do
     t.text     "content"
     t.string   "stamp"
     t.string   "title"
-    t.integer  "group_id"
+    t.integer  "group_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "paths", :force => true do |t|
-    t.integer  "page_from_id"
-    t.integer  "page_to_id"
+    t.integer  "page_from_id", :null => false
+    t.integer  "page_to_id",   :null => false
     t.string   "question"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -66,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130409063953) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  :default => false, :null => false
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

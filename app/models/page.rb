@@ -1,7 +1,6 @@
 class Page < ActiveRecord::Base
 
-  attr_accessible :content, :stamp, :title, :paths_attributes
-
+  attr_accessible :content, :stamp, :title, :paths_attributes, :group_id
 
 
   has_many :reverse_paths, :class_name => :Path, :foreign_key => :page_from_id, :dependent => :destroy
@@ -13,4 +12,8 @@ class Page < ActiveRecord::Base
   belongs_to :group
 
   accepts_nested_attributes_for  :paths, :reverse_paths, :pages, :reverse_pages
+
+  validates :group_id, :presence => true
+  validates :content, :presence => true
+  validates :title, :presence => true
 end

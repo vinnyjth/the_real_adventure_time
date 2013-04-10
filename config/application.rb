@@ -11,6 +11,19 @@ end
 
 module TheRealAdventureTime
   class Application < Rails::Application
+
+      config.generators do |g|
+        g.test_framework :rspec, fixture: true
+        g.fixture_replacement :factory_girl, dir: 'spec/factories'
+        g.view_specs false
+        g.helper_specs false
+        g.stylesheets = false
+        g.javascripts = false
+        g.controller_specs = true
+        g.request_specs = true
+        g.routing_specs = false
+        g.helper = false
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -58,5 +71,7 @@ module TheRealAdventureTime
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-  end
+
+    config.filter_parameters += [:password, :password_confirmation]
+end
 end

@@ -17,20 +17,33 @@
 
 	<%= stylesheet_link_tag    "application" %>
 	<%= javascript_include_tag "vendor/custom.modernizr" %>
-  <%= csrf_meta_tags %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-<div class="bgsky">
-</div>
+	<div class="bgsky">
+	</div>
 	<div class="row">
 		<div class="small-11 small-centered middleofscreen columns panel parchment">
-			  <%= render 'devise/menu/registration_items' %>|
-  <%= render 'devise/menu/login_items' %>
+			<% if flash[:error] %>
+			<%= content_tag :div, :id => "flash_name", :class => "alert-box alert" do %>
+			<%= flash[:error] %>
+			<a class="close">x</a>
+			<% end %>
+			<% end %>
 
-  <%= yield %>
-  	</div>
-  </div>
+			<% if flash[:notice] %>
+			<%= content_tag :div, :id => "flash_name", :class => "alert-box success" do %>
+			<%= flash[:notice] %>
+			<a class="close">x</a>
+			<% end %>
+			<% end %>
+			<%= render 'devise/menu/registration_items' %>|
+			<%= render 'devise/menu/login_items' %>
 
-  <%= javascript_include_tag "application" %>
+			<%= yield %>
+		</div>
+	</div>
+
+	<%= javascript_include_tag "application" %>
 </body>
 </html>

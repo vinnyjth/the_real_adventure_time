@@ -25,7 +25,6 @@ class GroupsController < ApplicationController
   # GET /groups/new.json
   def new
     @group = Group.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @group }
@@ -41,7 +40,7 @@ class GroupsController < ApplicationController
   # POST /groups.json
   def create
     @group = Group.new(params[:group])
-
+    @group.users << current_user
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }

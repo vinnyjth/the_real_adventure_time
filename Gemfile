@@ -6,7 +6,20 @@ gem 'rails', '3.2.12'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
 end
+
+group :test do 
+	gem 'faker'
+	gem 'cucumber-rails', :require => false
+	gem 'capybara'
+	gem 'database_cleaner'
+	gem 'email_spec'
+	gem 'launchy'
+end
+
 
 gem 'json'
 
