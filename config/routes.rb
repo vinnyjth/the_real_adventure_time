@@ -4,7 +4,11 @@ TheRealAdventureTime::Application.routes.draw do
 
   devise_for :users
 
-  resources :pages
+  resources :pages do
+    collection do 
+      get 'graph'
+    end
+  end
 
 
   resources :adventures

@@ -26,6 +26,29 @@ class PagesController < ApplicationController
     end
   end
 
+  def graph
+    @pages = Page.all
+    @paths = Path.all
+    @nodes = @pages.map do |page|{
+      :index => page.id,
+      :name => page.title,
+      :group => 1      
+    }end
+   @links = @paths.map do |path|{
+      :source => path.page_from_id,
+      :target => path.page_to_id,
+      :value => 25
+    }end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => {
+        :nodes => @nodes,
+        :links => @links
+        }
+      }
+    end
+  end
+
   # GET /pages/new
   # GET /pages/new.json
   def new
@@ -37,10 +60,10 @@ class PagesController < ApplicationController
         respond_to do |format|
             format.html # new.html.erb
             format.json { render :json => @page }
+          end
         end
-      end
-    else 
-      respond_to do |format|
+      else 
+        respond_to do |format|
           format.html # new.html.erb
           format.json { render :json => @page }
         end
@@ -101,17 +124,17 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
     unless @page.group.users.all.include? current_user
       flash[:error] = "You do not belong to the group that owns this page. Sorry bud :("
-      redirect_to @page
+        redirect_to @page
+      end
     end
-  end
 
-  def check_branch_access
-    if params.has_key?(:root_id)
-      @root = Page.find(params[:root_id])
-      unless @root.group.users.all.include? current_user
-        flash[:error] = "You don't own the node page. Try creating your own node!"
-        redirect_to @root
+    def check_branch_access
+      if params.has_key?(:root_id)
+        @root = Page.find(params[:root_id])
+        unless @root.group.users.all.include? current_user
+          flash[:error] = "You don't own the node page. Try creating your own node!"
+          redirect_to @root
+        end
       end
     end
   end
-end
