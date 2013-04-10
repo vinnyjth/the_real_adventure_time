@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
-one:
-  page_from_id: 1
-  page_to_id: 1
-
-two:
-  page_from_id: 1
-  page_to_id: 1

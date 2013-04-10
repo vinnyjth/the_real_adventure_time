@@ -1,8 +1,9 @@
 
 $.getJSON('/pages/graph').done(function(data){
-var width = 100,
-    height = 100;
 
+var width = $('.graph').width();
+var height = $('.graph').height();
+console.log(data);
 var color = d3.scale.category20();
 
 var force = d3.layout.force()
@@ -10,7 +11,7 @@ var force = d3.layout.force()
     .linkDistance(30)
     .size([width, height]);
 
-var svg = d3.select("div.graph").append("svg")
+var svg = d3.select(".graph").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -23,7 +24,7 @@ var svg = d3.select("div.graph").append("svg")
       .data(data.links)
     .enter().append("line")
       .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+      .style("stroke-width", 7);
 
   var node = svg.selectAll(".node")
       .data(data.nodes)
@@ -35,6 +36,7 @@ var svg = d3.select("div.graph").append("svg")
 
   node.append("title")
       .text(function(d) { return d.name; });
+
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })

@@ -29,15 +29,24 @@ class PagesController < ApplicationController
   def graph
     @pages = Page.all
     @paths = Path.all
+    
     @nodes = @pages.map do |page|{
-      :index => page.id,
+      :id => page.id,
       :name => page.title,
       :group => 1      
     }end
-   @links = @paths.map do |path|{
-      :source => path.page_from_id,
-      :target => path.page_to_id,
-      :value => 25
+    
+    @node_helper = Array.new
+
+
+    @nodes.each do |node| 
+      @node_helper << node[:id]
+    end
+    
+    @links = @paths.map do |path|{
+      :source => @node_helper.index(path.page_from_id),
+      :target => @node_helper.index(path.page_to_id),
+      :value => path.id
     }end
     respond_to do |format|
       format.html # show.html.erb
