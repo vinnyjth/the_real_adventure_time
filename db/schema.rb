@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130409214645) do
+ActiveRecord::Schema.define(:version => 20130410234345) do
 
   create_table "groups", :force => true do |t|
     t.string   "title"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130409214645) do
     t.integer  "group_id",   :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.boolean  "editable"
   end
 
   create_table "paths", :force => true do |t|

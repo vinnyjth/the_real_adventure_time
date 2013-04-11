@@ -4,7 +4,11 @@
 
 </h1>
 <p>
+  <% begin %>
   <%= @page.content.bbcode_to_html.html_safe %>
+  <% rescue %>
+  <%= @page.content %>
+  <% end %>
 </p>
 
 <% @page.reverse_paths.each do |path| %>

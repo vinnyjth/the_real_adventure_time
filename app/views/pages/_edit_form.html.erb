@@ -1,31 +1,23 @@
 <%= tinymce_assets %>
 <%= form_for(@page) do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
 
-      <ul>
-      <% @page.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+<%= render 'form', :f => f %>
+<%= f.fields_for :group do |group_builder| %>
+
+  <% current_user.groups.each do |group| %>
+  <%= radio_button_tag :group_id, group.id %> <%= group.title %>
+
+<% end %>
+<% end %>
+  <% if !@page.reverse_pages.empty? %>
+    <%= f.fields_for :paths do |path_builder| %>
+      <% @page.reverse_pages do |page| %>
+        The statement that links <%= label_tag page.title %> to this page
+        <%= path_builder.text_field :question %>
       <% end %>
-      </ul>
-    </div>
+    <% end %> 
   <% end %>
-
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content, :class => "tinymce", :rows => 200, :cols => 120 %>
-    <%= tinymce %>
-  </div>
-  <div class="field">
-    <%= f.label :stamp %><br />
-    <%= f.text_field :stamp %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="actions">
+  <%= f.submit %>
+</div>
 <% end %>
