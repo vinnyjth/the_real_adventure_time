@@ -15,6 +15,8 @@
 <%= link_to path.question, Page.find(path.page_to_id), :class => 'small button keep-white' %>
 <br />
 <% end %>
+
 <%= link_to 'Edit', edit_page_path(@page) %> |
+
 <%= link_to 'Back', pages_path %> |
 <%= link_to 'Create Branch', new_page_path(:root_id => @page.id) %>

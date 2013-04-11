@@ -1,4 +1,5 @@
 TheRealAdventureTime::Application.routes.draw do
+
   resources :groups
 
 
@@ -13,6 +14,8 @@ TheRealAdventureTime::Application.routes.draw do
 
   resources :adventures
   root :to => 'pages#index' 
+
+  match '/graph', :to => 'pages#graph'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
