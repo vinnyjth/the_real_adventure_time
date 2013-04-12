@@ -1,0 +1,31 @@
+.button {
+	vertical-align: middle;
+}
+.middleofscreen {
+	margin-top: 65px;
+}
+.bgsky {
+	background-image: url('night_sky.jpg');
+	background-size: 100%;
+	width: 100%;
+	position: fixed;
+}
+.parchment {
+	box-shadow: rgba(0,0,0,0.4) 10px 10px;
+}
+.keep-white {
+	color: #fff !important;
+}
+.graph {
+	height: 600px;
+}
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
