@@ -5,7 +5,7 @@ var width = $('.graph').width();
 var height = $('.graph').height();var color = d3.scale.category20();
 
 var force = d3.layout.force()
-    .charge(-120)
+    .charge(-1000)
     .linkDistance(100)
     .size([width, height]);
 
