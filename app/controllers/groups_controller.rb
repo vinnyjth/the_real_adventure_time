@@ -72,11 +72,16 @@ class GroupsController < ApplicationController
   # DELETE /groups/1.json
   def destroy
     @group = Group.find(params[:id])
+    if !@group.pages.empty? 
+      flash[:error] = "You can't destroy this group, it has pages associated with it."
+      redirect_to groups_url
+    else
     @group.destroy
 
     respond_to do |format|
       format.html { redirect_to groups_url }
       format.json { head :no_content }
     end
+  end
   end
 end
