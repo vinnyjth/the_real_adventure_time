@@ -12,11 +12,15 @@
 </p>
 
 <% @page.reverse_paths.each do |path| %>
-<%= link_to path.question, Page.find(path.page_to_id), :class => 'small button keep-white' %>
+<%= link_to path.question + ' +' + Page.find(path.page_to_id).reputation_for(:votes).to_s[/[^.]+/], Page.find(path.page_to_id), :class => 'small button keep-white' %>
 <br />
 <% end %>
+<%= link_to "Promote", vote_page_path(@page, type: "up"), method: "post", class: "tiny button success" %> 
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to "Demote", vote_page_path(@page, type: "down"), method: "post", class: "tiny button alert"%> 
 
-<%= link_to 'Back', pages_path %> |
-<%= link_to 'Create Branch', new_page_path(:root_id => @page.id) %>
+<div class="tiny button secondary" > <%= @page.reputation_for(:votes).to_i %> + </div>
+
+<%= link_to 'Edit', edit_page_path(@page), class: "tiny button secondary"%> 
+<%= link_to 'Back', pages_path, class: "tiny button secondary"%> 
+<%= link_to 'Create Branch', new_page_path(:root_id => @page.id), class: "tiny button secondary"%>

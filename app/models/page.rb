@@ -17,6 +17,9 @@ class Page < ActiveRecord::Base
   validates :content, :presence => true
   validates :title, :presence => true
 
+  has_reputation :votes, source: :group, aggregated_by: :sum
+
+  
   def self.search(search)
     if search
       where('title LIKE ?', "%#{search}%")

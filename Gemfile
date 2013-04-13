@@ -41,6 +41,7 @@ gem 'tinymce-rails'
 gem 'ruby-bbcode'
 gem 'jquery-rails'
 gem 'will_paginate'
+gem 'activerecord-reputation-system'
 
 group :production do
 	gem 'pg'

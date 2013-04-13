@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show ]
+  before_filter :authenticate_user!, :except => [:index, :show, :graph]
   before_filter :check_ownership, :only => [:edit, :update, :destroy]
   before_filter :check_branch_access, :only => [:new]
   # GET /pages
@@ -12,6 +12,13 @@ class PagesController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @pages }
     end
+  end
+
+  def vote
+    value = params[:type] == "up" ? 1 : -1
+    @page = Page.find(params[:id])
+    @page.add_or_update_evaluation(:votes, value,@page.group)
+    redirect_to :back, notice: "Thank you for voting!"
   end
 
   # GET /pages/1

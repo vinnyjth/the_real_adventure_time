@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :email, :case_sensitive => false
-  validates :profile, :length => {:maximum =>  1000} 
+  validates :profile, :length => {:maximum =>  3000} 
+
+  
 
   def create_first_group
     @Group = Group.create(title: self.name + "'s group", description: "The default group for " + self.name)

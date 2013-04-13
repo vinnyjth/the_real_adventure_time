@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<h1 class="text-center">
+	<b>  <%= @user.name %></b>
+
+</h1>
+<div class="row">
+	<div class="small-9 column">
+		<p>
+			<% begin %>
+			<td><%= image_tag avatar_url(@user), :class => "left", :style => "margin:0px 25px;" %></td>
+			<%= @user.profile.bbcode_to_html.html_safe %>
+
+			<% rescue %>
+			<td><%= image_tag avatar_url(@user), :class => "left" %></td>
+			<%= @user.profile %>
+
+
+			<% end %>
+		</p>
+	</div>
+
+	<div class="small-2 column panel" style="margin-right: 10px;">
+		<% @user.groups.each do |group| %>
+		<% group.pages.each do |page| %>
+		<%= link_to page.title, page, :class => 'small button keep-white' %>
+		<br />
+		<% end %>
+		<% end %>
+	</div>
+</div>

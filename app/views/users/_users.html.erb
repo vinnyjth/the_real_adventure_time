@@ -5,23 +5,35 @@
         <tr>
           <th> Name </th>
           <th></th>
-          <th>Actions</th>
+          <th>Rank</th>
+          <th>Actions </th>
+          <% if current_user %>
           <% if current_user.admin? %>
             <th></th>
             <th></th>
           <% end %>
+              <% end %>
         </tr>
         <tr>
         <td><%= user.name %></td>
         <td><%= image_tag avatar_url(user) %></td>
+        <td><% sum_score = 0 %>
+          <% user.groups.each do |group| %> 
+            <% sum_score += group.reputation_for(:votes) %>
+          <% end %>
+          <%= sum_score.to_i %>
+        </td>
         <td><%= link_to 'Show', user %></td>
+        <% if current_user %>
         <% if current_user.admin? %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+        <% end %>
         <% end %>
         </tr>
       </table>
     </div>
     <% end %>
+
 
   </div>

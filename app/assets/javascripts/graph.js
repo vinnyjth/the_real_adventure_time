@@ -47,21 +47,34 @@ var vis = svg
 
   var link = vis.selectAll(".link")
       .data(data.links)
-    .enter().append("line")
+      .enter().append("line")
       .attr("class", "link")
       .style("stroke-width", 7)
       .attr("marker-end", "url(#endMarker)");
 
-   var node = vis.selectAll(".node")
+  var node = vis.selectAll(".g")
       .data(data.nodes)
-    .enter().append("circle")
+      .enter().append("svg:g")
+      .attr("class", "node")
+      .on("click", function(d) {window.location.href = "/pages/" + d.id})
+      .call(force.drag);
+
+  node.append("circle")
       .attr("class", "node")
       .attr("r", 10)
-      .style("fill", function(d) { return color(d.group); })
-      .call(force.drag);
+      .style("fill", function(d) { return color(d.group); }); 
 
   node.append("title")
       .text(function(d) { return d.name; });
+
+  node.append("text")
+    .attr("x", 12)
+    .attr("dy", ".35em")
+    .attr("class", "graph-text")
+    .text(function(d) { return d.name; });
+
+  node.append("svg:a")
+    .attr("xlink:href", "www.google.com");  
 
   force.on("tick", function() {
     link.attr("x1", function(d) { return d.source.x; })
@@ -69,7 +82,8 @@ var vis = svg
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+    node
+        .attr("transform", function(d) { 
+            return "translate(" + d.x + "," + d.y + ")"; });
   });
 });
