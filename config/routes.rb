@@ -4,7 +4,7 @@ TheRealAdventureTime::Application.routes.draw do
 
 
   devise_for :users
-
+  resources :users
   resources :pages do
     collection do 
       get 'graph'

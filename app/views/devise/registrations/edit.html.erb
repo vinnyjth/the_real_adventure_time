@@ -1,5 +1,5 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<%= tinymce_assets %>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -8,6 +8,13 @@
 
   <div><%= f.label :name %><br />
   <%= f.text_field :name %></div>
+
+
+  <div class="field">
+    <%= f.label :profile, 'Tell me about yourself' %><br />
+    <%= f.text_area :profile, :class => "tinymce", :rows => 200, :cols => 120 %>
+    <%= tinymce %>
+  </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -27,6 +34,7 @@
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+</p>
 
 <%= link_to "Back", :back %>

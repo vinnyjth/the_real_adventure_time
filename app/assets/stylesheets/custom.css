@@ -30,3 +30,8 @@
   stroke: #999;
   stroke-opacity: .6;
 }
+.center
+{ 
+	margin-left: auto;
+	margin-right: auto;
+}

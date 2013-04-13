@@ -11,14 +11,28 @@ var force = d3.layout.force()
 
 var svg = d3.select(".graph").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("viewBox", "0 0 " + width + " " + height )
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .attr("pointer-events", "all")
+    .call(d3.behavior.zoom().on("zoom", redraw));
+
+
+var vis = svg
+  .append('svg:g');
 
   force
       .nodes(data.nodes)
       .links(data.links)
       .start();
 
-  svg.append("svg:defs").selectAll("marker")
+  function redraw() {
+      vis
+      .attr("transform",
+      "translate(" + d3.event.translate + ")"
+      + " scale(" + d3.event.scale + ")");
+  }
+  vis.append("svg:defs").selectAll("marker")
     .data([1]).enter()
     .append("svg:marker")
     .attr("id", 'endMarker')
@@ -31,14 +45,14 @@ var svg = d3.select(".graph").append("svg")
   .append("svg:path")
     .attr("d", "M0,-5L10,0L0,5");
 
-  var link = svg.selectAll(".link")
+  var link = vis.selectAll(".link")
       .data(data.links)
     .enter().append("line")
       .attr("class", "link")
       .style("stroke-width", 7)
       .attr("marker-end", "url(#endMarker)");
 
-   var node = svg.selectAll(".node")
+   var node = vis.selectAll(".node")
       .data(data.nodes)
     .enter().append("circle")
       .attr("class", "node")

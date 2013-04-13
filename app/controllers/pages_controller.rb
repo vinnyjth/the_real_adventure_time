@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   # GET /pages.json
 
   def index
-    @pages = Page.all
+    @pages = Page.search(params[:search]).order("created_at asc").paginate(:per_page => 5, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

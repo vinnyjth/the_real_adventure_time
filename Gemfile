@@ -40,6 +40,7 @@ gem 'devise'
 gem 'tinymce-rails'
 gem 'ruby-bbcode'
 gem 'jquery-rails'
+gem 'will_paginate'
 
 group :production do
 	gem 'pg'

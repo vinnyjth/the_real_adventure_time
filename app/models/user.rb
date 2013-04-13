@@ -3,12 +3,12 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  :recoverable, :rememberable, :trackable, :validatable
 
   before_create :create_first_group
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :profile
   # attr_accessible :title, :body
 
   has_many :memberships
@@ -18,9 +18,17 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :email, :case_sensitive => false
+  validates :profile, :length => {:maximum =>  1000} 
 
   def create_first_group
     @Group = Group.create(title: self.name + "'s group", description: "The default group for " + self.name)
     self.groups << @Group
+  end
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
   end
 end

@@ -1,0 +1,43 @@
+<table>
+  <tr>
+    <th>Stamp</th>
+    <th>Title</th>
+    <th>Child Pages</th>
+    <th>Parent Pages</th>
+    <th></th>
+    <% if current_user %>
+    <th></th>
+    <th></th>
+    <% end %>
+  </tr>
+
+  <% @pages.each do |page| %>
+  <tr>
+    <td><%= page.stamp %></td>
+    <td><%= page.title %></td>
+    <td>
+      <% page.pages.each_with_index do |related_page, i| %>
+      <% if i == 0 %>
+      |
+      <% end %>
+      <%= related_page.title %> |
+      <% end %>
+    </td>
+    <td>
+      <% page.reverse_pages.each_with_index do |related_reverse_page, i | %>
+      <% if i == 0 %>
+      |
+      <% end %>
+      <%= related_reverse_page.title %> | 
+      <% end %>
+    </td>
+    <td><%= link_to 'Show', page %></td>
+    <% if current_user && page.group %>
+    <% if page.group.users.include? current_user %>
+    <td><%= link_to 'Edit', edit_page_path(page) %></td>
+    <td><%= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+    <% end %>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

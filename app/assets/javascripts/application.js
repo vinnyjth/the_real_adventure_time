@@ -16,3 +16,13 @@
 //= require_tree .
 
 $(document).foundation();
+$(function() {
+	$(document).on("click","#game_classes th a, #page .pagination a", function() {
+		$.getScript(this.href);
+		return false;
+	});
+	$("#pages_search input").keyup(function() {
+		$.get($("#pages_search").attr("action"), $("#pages_search").serialize(), null, "script");
+		return false;
+	});
+});
