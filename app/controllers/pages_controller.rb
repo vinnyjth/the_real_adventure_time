@@ -71,7 +71,6 @@ class PagesController < ApplicationController
     @page = Page.new
     if(params.has_key?(:root_id)) 
       @root = Page.find(params[:root_id])
-      if @root.group.users.all.include? current_user
         @page.paths.build()
         respond_to do |format|
             format.html # new.html.erb
