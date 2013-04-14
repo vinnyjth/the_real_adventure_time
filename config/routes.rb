@@ -10,6 +10,7 @@ TheRealAdventureTime::Application.routes.draw do
       get 'graph'
     end
     member {post :vote}
+    member {get :show}
   end
 
 

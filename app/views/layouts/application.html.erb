@@ -20,6 +20,39 @@
 	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div class="fixed">
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><%= link_to "Home", root_url %></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="divider"></li>
+      <%= render 'layouts/top_menu' %>
+    </ul>
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+    	
+    	<%= render 'devise/menu/login_items' %>
+    	     <li class="has-dropdown"><a href="#">Me</a>
+
+        <ul class="dropdown">
+          <%= render 'devise/menu/registration_items' %>
+        </ul>
+      </li>
+    </ul>
+
+  </section>
+</nav>
+</div>
 	<div class="bgsky">
 	</div>
 	<div class="row">
@@ -37,8 +70,6 @@
 			<a class="close">x</a>
 			<% end %>
 			<% end %>
-			<%= render 'devise/menu/registration_items' %>|
-			<%= render 'devise/menu/login_items' %>
 
 			<%= yield %>
 		</div>

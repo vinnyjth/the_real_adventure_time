@@ -1,9 +1,7 @@
 <% if user_signed_in? %>
-  <%= link_to('Edit registration', edit_user_registration_path) %> | 
-  <%= link_to('Groups', groups_path) %> |
-  <%= link_to('Graph', '/graph') %> |
-  <%= link_to('Pages', pages_path) %>
+  <li><%= link_to('Edit Profile', edit_user_registration_path) %> </li> 
+  <li><%= link_to('Profile',current_user ) %> </li>
 <% else %>
-  <%= link_to('Register', new_user_registration_path)  %>
+  <li><%= link_to('Register', new_user_registration_path)  %></li>
 
 <% end %>

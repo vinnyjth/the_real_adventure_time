@@ -2,7 +2,7 @@
 	vertical-align: middle;
 }
 .middleofscreen {
-	margin-top: 65px;
+	margin-top: 45px;
 }
 .bgsky {
 	background-image: url('night_sky.jpg');
@@ -44,4 +44,9 @@
   font: 10px sans-serif;
   pointer-events: none;
   letter-spacing: 1px;
+}
+.top-bar {
+	margin-bottom: 0px !important;
+	border-bottom: 3px solid #fff;
+	height: 48px;
 }
