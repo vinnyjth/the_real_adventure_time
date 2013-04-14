@@ -45,5 +45,7 @@
 	</div>
 
 	<%= javascript_include_tag "application" %>
+	<%= render :partial => ‘layouts/ga’ if RAILS_ENV == ‘production’ %>
 </body>
+
 </html>
