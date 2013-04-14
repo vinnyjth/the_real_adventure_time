@@ -41,29 +41,33 @@ class PagesController < ApplicationController
       :id => page.id,
       :name => page.title,
       :group => 1      
-      }end
-      
-      @node_helper = Array.new
+    }
+  end
+
+  @node_helper = Array.new
 
 
-      @nodes.each do |node| 
-        @node_helper << node[:id]
-      end
-      
-      @links = @paths.map do |path|{
-        :source => @node_helper.index(path.page_from_id),
-        :target => @node_helper.index(path.page_to_id),
-        :value => path.id
-        }end
-        respond_to do |format|
+  @nodes.each do |node| 
+    @node_helper << node[:id]
+  end
+
+  @links = @paths.map do |path|{
+    :source => @node_helper.index(path.page_from_id),
+    :target => @node_helper.index(path.page_to_id),
+    :value => path.id
+  }
+  end
+  respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => {
         :nodes => @nodes,
         :links => @links
+              }
+
       }
-    }
   end
 end
+
 
   # GET /pages/new
   # GET /pages/new.json
@@ -81,8 +85,8 @@ end
           format.html # new.html.erb
           format.json { render :json => @page }
         end
-      end
     end
+  end
 
   # GET /pages/1/edit
   def edit
