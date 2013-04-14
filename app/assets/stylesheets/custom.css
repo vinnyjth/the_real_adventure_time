@@ -39,8 +39,9 @@
 {
 	margin: 25px;
 }
-.graph-text {
-  color: #000;
+.graph-text { 
+  stroke: #000;
   font: 10px sans-serif;
   pointer-events: none;
+  letter-spacing: 1px;
 }
