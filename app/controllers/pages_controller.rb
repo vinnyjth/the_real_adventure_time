@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def index
     if params[:term]
-      @pages = Page.find(:all,:conditions => ['title LIKE ?', "#{params[:term]}%"])
+      @pages = Page.find(:all,:conditions => ['title LIKE ?', "%#{params[:term]}%"])
     else
       @search = Page.search(params[:search]).find_with_reputation(:votes, :all, { :order => 'votes DESC' })
       @pages =  Kaminari.paginate_array(@search).page(params[:page])
