@@ -1,9 +1,10 @@
 class GroupsController < ApplicationController
+  before_filter :authenticate_user!
   # GET /groups
   # GET /groups.json
   def index
     @groups = Group.all
-    @users = User.search(params[:search]).order("name asc").paginate(:per_page => 5, :page => params[:page])
+    @users = User.search(params[:search]).order("name asc").paginate(:per_page => 20, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

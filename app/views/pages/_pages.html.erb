@@ -2,6 +2,7 @@
   <tr>
     <th>Stamp</th>
     <th>Title</th>
+    <th>Votes</th>
     <th>Child Pages</th>
     <th>Parent Pages</th>
     <th></th>
@@ -15,6 +16,7 @@
   <tr>
     <td><%= page.stamp %></td>
     <td><%= page.title %></td>
+    <td><%= page.votes.to_s[/[^.]+/] %></td>
     <td>
       <% page.pages.each_with_index do |related_page, i| %>
       <% if i == 0 %>

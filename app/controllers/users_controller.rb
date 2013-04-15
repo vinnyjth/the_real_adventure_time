@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def index
-    @users = User.search(params[:search]).order("created_at asc").paginate(:per_page => 5, :page => params[:page])
+    @users = User.search(params[:search]).order("created_at asc").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,5 +14,12 @@ class UsersController < ApplicationController
       format.html # index.html.erb
       format.json { render :json => @user }
     end
+  end
+
+
+  def add_user_to_group
+    @group = Group.find(params[:group])
+    @user = Group.find(params[:id])
+    @group.users << @user
   end
 end

@@ -1,0 +1,12 @@
+
+<%= form_tag(add_user_to_group_path, :method => "post") do %>
+  <% current_user.groups.each_with_index do |group, i| %>
+        <% if i == 0 %> 
+          <%= label_tag group.title %>
+          <%= radio_button_tag :group_id, group.id, :default => true %>
+          <% else %>
+          <%= label_tag group.title %>
+          <%= radio_button_tag :group_id, group.id %>
+        <% end %>
+    <% end %>
+<% end %>

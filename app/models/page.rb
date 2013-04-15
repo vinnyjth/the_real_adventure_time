@@ -19,6 +19,9 @@ class Page < ActiveRecord::Base
 
   has_reputation :votes, source: :group, aggregated_by: :sum
 
+  validates :title, obscenity: true
+  validates :stamp, obscenity: true
+  validates :content,  obscenity: { sanitize: true, replacement: :default}
   
   def self.search(search)
     if search

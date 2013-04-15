@@ -1,10 +1,12 @@
 TheRealAdventureTime::Application.routes.draw do
 
-  resources :groups
+  resources :groups 
 
 
   devise_for :users
-  resources :users
+  resources :users do
+    member {post :add_user_to_group }
+  end
   resources :pages do
     collection do 
       get 'graph'
@@ -13,7 +15,7 @@ TheRealAdventureTime::Application.routes.draw do
   end
 
 
-  resources :adventures
+  resources :paths
   root :to => 'pages#index' 
 
   match '/graph', :to => 'pages#graph'

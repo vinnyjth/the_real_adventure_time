@@ -5,7 +5,7 @@
 </h1>
 <p>
   <% begin %>
-  <%= @page.content.bbcode_to_html.html_safe %>
+  <%= @page.content.bbcode_to_html(:disable => :image).html_safe %>
   <% rescue %>
   <%= @page.content %>
   <% end %>
@@ -22,5 +22,5 @@
 <div class="tiny button secondary" > <%= @page.reputation_for(:votes).to_i %> + </div>
 
 <%= link_to 'Edit', edit_page_path(@page), class: "tiny button secondary"%> 
-<%= link_to 'Back', pages_path, class: "tiny button secondary"%> 
 <%= link_to 'Create Branch', new_page_path(:root_id => @page.id), class: "tiny button secondary"%>
+<%= link_to 'Create Path', new_path_path(:root_id => @page.id), class: "tiny button secondary"%>

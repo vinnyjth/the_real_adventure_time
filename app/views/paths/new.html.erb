@@ -1,0 +1,25 @@
+
+
+
+
+<h1>New link</h1>
+
+<%= form_for(@path) do |f| %>
+
+<!-- Place the following text fields in your form, the names are not important. What is important is that they match the names in your javascript above -->
+  <p>
+        Select which page you want to link to:<br /> 
+<!-- This is the textfield that will autocomplete. What is displayed here is for the user to see but the data will not go anywhere -->
+      <input id="select_page"/>
+<!-- This is the hidden textfield that will be given the Persons ID based on who is selected. This value will be sent as a parameter -->
+      <input id="link_page_id" name="path[page_to_id]" type="hidden"/>
+  </p>
+<!-- end of notes -->
+  <p>
+    <%= f.label :question %><br />
+    <%= f.text_field :question %>
+    <%= f.hidden_field :page_from_id, :value => @root.id %>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>

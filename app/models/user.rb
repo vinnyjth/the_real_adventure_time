@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
   validates :profile, :length => {:maximum =>  3000} 
 
   
-
+  validates :name, obscenity: true
+  validates :profile, obscenity: true
   def create_first_group
     @Group = Group.create(title: self.name + "'s group", description: "The default group for " + self.name)
     self.groups << @Group

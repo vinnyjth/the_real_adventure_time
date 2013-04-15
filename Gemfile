@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.12'
-
+gem 'obscenity'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
+
   gem 'factory_girl_rails'
   gem 'guard-rspec'
 end
@@ -36,12 +36,15 @@ group :assets do
 
   gem 'zurb-foundation', '~> 4.0.0'
 end
+gem 'rspec-rails'
 gem 'devise'
 gem 'tinymce-rails'
 gem 'ruby-bbcode'
 gem 'jquery-rails'
-gem 'will_paginate'
+gem 'jquery-ui-rails'
+gem 'kaminari'
 gem 'activerecord-reputation-system'
+
 
 group :production do
 	gem 'pg'

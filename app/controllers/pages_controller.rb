@@ -6,8 +6,13 @@ class PagesController < ApplicationController
   # GET /pages.json
 
   def index
-    @pages = Page.search(params[:search]).order("created_at asc").paginate(:per_page => 5, :page => params[:page])
-
+    if params[:term]
+      @pages = Page.find(:all,:conditions => ['title LIKE ?', "%#{params[:term]}%"])
+    else
+      @search = Page.search(params[:search]).find_with_reputation(:votes, :all, { :order => 'votes DESC' })
+      @pages =  Kaminari.paginate_array(@search).page(params[:page])
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json => @pages }
@@ -17,7 +22,7 @@ class PagesController < ApplicationController
   def vote
     value = params[:type] == "up" ? 1 : -1
     @page = Page.find(params[:id])
-    @page.add_or_update_evaluation(:votes, value,@page.group)
+    @page.add_or_update_evaluation(:votes, value, @page.group)
     redirect_to :back, notice: "Thank you for voting!"
   end
 

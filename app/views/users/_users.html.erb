@@ -24,9 +24,9 @@
           <%= sum_score.to_i %>
         </td>
         <td><%= link_to 'Show', user %></td>
+        <td></td>
         <% if current_user %>
         <% if current_user.admin? %>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
         <% end %>
         <% end %>
