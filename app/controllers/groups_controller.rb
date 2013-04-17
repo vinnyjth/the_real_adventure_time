@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :check_ownership, :only => [:destroy, :update, :edit]
   # GET /groups
   # GET /groups.json
   def index
@@ -87,4 +88,14 @@ class GroupsController < ApplicationController
     end
   end
   end
+
+    private
+  def check_ownership
+    @group = Group.find(params[:id])
+    unless current_user.groups.include?(@group) || current_user.admin?
+      flash[:error] = "You do not belong to this group"
+        redirect_to groups
+      end
+    end
+
 end

@@ -8,8 +8,11 @@ TheRealAdventureTime::Application.routes.draw do
 
   get "static_pages/help"
 
-  resources :groups 
-
+  resources :groups do
+    collection do
+      post '/add_user_to_group', :as => :add_user_to_group
+    end
+  end
   devise_for :users
 
   resources :users do
