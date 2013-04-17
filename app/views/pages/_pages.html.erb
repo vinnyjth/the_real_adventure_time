@@ -22,7 +22,7 @@
       <% if i == 0 %>
       |
       <% end %>
-      <%= related_page.title %> |
+      <%= link_to related_page.title, related_page %> |
       <% end %>
     </td>
     <td>
@@ -30,7 +30,7 @@
       <% if i == 0 %>
       |
       <% end %>
-      <%= related_reverse_page.title %> | 
+      <%= link_to related_reverse_page.title, related_reverse_page %> | 
       <% end %>
     </td>
     <td><%= link_to 'Show', page %></td>

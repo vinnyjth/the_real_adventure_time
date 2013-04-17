@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe Page do
 	it 'is valid with a name and email and password' do
 		expect(build(:user)).to be_valid
 	end
