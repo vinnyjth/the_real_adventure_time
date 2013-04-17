@@ -44,10 +44,10 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
 gem 'activerecord-reputation-system'
-
+gem 'pg'
 
 group :production do
-	gem 'pg'
+
 end
 
 

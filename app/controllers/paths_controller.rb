@@ -1,8 +1,9 @@
 class PathsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :check_ownership, :only => [:destroy]
 
 	def index
-		@paths = Path.all
+		@paths = current_user.paths.all
 	end
 	
 	def new 
@@ -22,7 +23,7 @@ class PathsController < ApplicationController
 		@path = Path.new(params[:path])
 		if @path.save
       respond_to do |format|
-        	format.html { redirect_to @path, notice: 'Path was successfully created.' }
+        	format.html { redirect_to Page.find(@path.page_to_id), notice: 'Path was successfully created.' }
         	format.json { render json: @path, status: :created, location: @path }
         end
     else
@@ -32,4 +33,22 @@ class PathsController < ApplicationController
       end
 	  end
   end
+
+  def destroy
+    @path = Path.find(params[:id])
+    @path.destroy
+    respond_to do |format|
+      format.html { redirect_to paths_url }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+  def check_ownership
+    @path = Path.find(params[:id])
+    unless current_user.paths.include?(@path) || current_user.admin?
+      flash[:error] = "You do not belong to the group that owns this path. Sorry bud :("
+        redirect_to paths
+      end
+    end
 end

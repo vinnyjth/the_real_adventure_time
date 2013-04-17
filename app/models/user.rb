@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :memberships
   has_many :groups, :through => :memberships
+  has_many :pages, :through => :groups
+  has_many :paths, :through => :pages
 
   has_many :owned_groups, :class_name => :Group, :foreign_key => :user_id
 

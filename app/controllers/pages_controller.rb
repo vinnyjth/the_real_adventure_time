@@ -43,6 +43,7 @@ class PagesController < ApplicationController
     @paths = Path.all
     
     @nodes = @pages.map do |page|{
+      :rating => page.reputation_for(:votes),
       :id => page.id,
       :name => page.title,
       :group => 1      
@@ -145,7 +146,7 @@ end
   private
   def check_ownership
     @page = Page.find(params[:id])
-    unless @page.group.users.all.include? current_user
+    unless @page.group.users.all.include? current_user || current_user.admin?
       flash[:error] = "You do not belong to the group that owns this page. Sorry bud :("
         redirect_to @page
       end
@@ -155,10 +156,12 @@ end
       if params.has_key?(:root_id)
         @root = Page.find(params[:root_id])
         if @root.editable == false
-          unless @root.group.users.all.include? current_user || 
+          if !current_user.admin?
+          unless (@root.group.users.all.include?(current_user)) 
             flash[:error] = "You don't own the node page. Try creating your own node!"
             redirect_to @root
           end
+        end
         end
       end
     end

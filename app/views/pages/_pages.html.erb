@@ -35,7 +35,7 @@
     </td>
     <td><%= link_to 'Show', page %></td>
     <% if current_user && page.group %>
-    <% if page.group.users.include? current_user %>
+    <% if (page.group.users.include?(current_user)) or current_user.admin %>
     <td><%= link_to 'Edit', edit_page_path(page) %></td>
     <td><%= link_to 'Destroy', page, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
     <% end %>

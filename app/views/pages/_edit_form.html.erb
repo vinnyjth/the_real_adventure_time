@@ -11,14 +11,14 @@
 <% end %>
   <% if !@page.reverse_pages.empty? %>
     <%= f.fields_for :paths do |path_builder| %>
-      <% @page.reverse_pages.each do |page| %>
+
       <br />
-        <%= path_builder.label :question, "The statment that links this page to the previous page: " + page.title %>
+        <%= path_builder.label :question, "The statment that links this page to the previous page: " %>
         <%= path_builder.text_field :question %>
       <% end %>
-    <% end %> 
+
   <% end %>
 <div class="actions">
-  <%= f.submit %>
+  <%= f.submit, :id => "submit-button" %>
 </div>
 <% end %>

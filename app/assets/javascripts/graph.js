@@ -61,7 +61,7 @@ var vis = svg
 
   node.append("circle")
       .attr("class", "node")
-      .attr("r", 10)
+      .attr("r", function(d) { return d.rating + 10; })
       .style("fill", function(d) { return color(d.group); }); 
 
   node.append("title")

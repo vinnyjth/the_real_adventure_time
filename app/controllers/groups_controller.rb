@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
-    @users = User.search(params[:search]).order("name asc").paginate(:per_page => 20, :page => params[:page])
+    @users = User.search(params[:search]).order("name asc").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

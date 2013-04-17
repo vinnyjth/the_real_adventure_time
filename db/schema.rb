@@ -13,6 +13,14 @@
 
 ActiveRecord::Schema.define(:version => 20130413210334) do
 
+  create_table "adventures", :force => true do |t|
+    t.string   "name"
+    t.boolean  "male"
+    t.integer  "route"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "groups", :force => true do |t|
     t.string   "title"
     t.text     "description"

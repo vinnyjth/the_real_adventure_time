@@ -1,0 +1,21 @@
+<h1>Listing paths</h1>
+
+<table>
+  <tr>
+    <th>Path Start</th>
+    <th>Path end</th>
+    <th>Question</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @paths.each do |path| %>
+  <tr>
+    <td><%= Page.find(path.page_from_id).title %></td>
+    <td><%= Page.find(path.page_to_id).title %></td>
+    <td><%= path.question %></td>
+    <td><%= link_to 'Edit', edit_page_path(Page.find(path.page_to_id)) %></td>
+    <td><%= link_to 'Destroy', path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

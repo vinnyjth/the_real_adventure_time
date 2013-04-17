@@ -1,6 +1,4 @@
-.button {
-	vertical-align: middle;
-}
+
 .middleofscreen {
 	margin-top: 45px;
 }
@@ -22,7 +20,7 @@
 }
 
 .node {
-  stroke: #fff;
+  stroke: #000;
   stroke-width: 1.5px;
 }
 

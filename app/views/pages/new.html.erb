@@ -1,5 +1,22 @@
 <h1>New page</h1>
-
+<a id="help">Need help? Click here!</a>
 <%= render 'new_form' %>
+<ol data-joyride id="joyride" style="display: none;">
 
-<%= link_to 'Back', pages_path %>
+  <li>This is the basic information you will need in order to create your page</li>
+
+  <li data-id="content-field">This is where you type the content of the page. Be lengthy, and be sure to pertain to the plot. Feel free to add pictures. </li>
+
+  <li data-id="stamp-field">Use the stamp field to make notes to help you keep track of your story. This will not be shown to the viewers of the page</li>
+
+  <li data-id="title-field">Name your page here. This will be shown to the reader</li>
+
+  <li data-id="path-field">This is important - use this field to tie this page to the previous page. This will be the option shown to the user that will take them to this page</li>
+
+  <li data-id="group-field">The group that this page belongs to. All users in the group will be able to edit the page </li>
+
+  <li> For more detailed information, visit <%= link_to "Help", static_pages_help_path, :class => "button small" %> </li>
+
+</ol>
+
+<%= link_to 'Back', :back %>

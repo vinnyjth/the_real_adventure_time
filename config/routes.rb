@@ -1,12 +1,21 @@
 TheRealAdventureTime::Application.routes.draw do
 
+  get "static_pages/home"
+
+  get "static_pages/featured_pages"
+
+  get "static_pages/about"
+
+  get "static_pages/help"
+
   resources :groups 
 
-
   devise_for :users
+
   resources :users do
     member {post :add_user_to_group }
   end
+
   resources :pages do
     collection do 
       get 'graph'
@@ -16,7 +25,7 @@ TheRealAdventureTime::Application.routes.draw do
 
 
   resources :paths
-  root :to => 'pages#index' 
+  root :to => 'static_pages#home' 
 
   match '/graph', :to => 'pages#graph'
 

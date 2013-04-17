@@ -3,27 +3,28 @@
   <%= render 'form', :f => f %>
   
     <%= f.fields_for :paths do |builder| %>
-      <div class="field">
+      <div class="field" id="path-field">
         <%= builder.label :question %><br />
-        <%= builder.text_field :question %>
+        <%= builder.text_field :question   %>
         <%= builder.hidden_field :page_from_id, :value => @root.id %>
       </div>
     <% end %>
-
+    <div class="field" id="group-field">
     <%= f.fields_for :group do |group_builder| %>
 
         <% current_user.groups.each_with_index do |group, i| %>
         <% if i == 0 %> 
           <%= label_tag group.title %>
-          <%= radio_button_tag :group_id, group.id, :default => true %>
+          <%= radio_button_tag :group_id, group.id, :default => true, :id => "group-field" %>
           <% else %>
           <%= label_tag group.title %>
           <%= radio_button_tag :group_id, group.id %>
         <% end %>
         <% end %>
     <% end %>
+  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit%>
   </div>
 <% end %>

@@ -77,6 +77,13 @@
 
 	<%= javascript_include_tag "application" %>
 	<%= render :partial => 'layouts/ga' if Rails.env.production? %>
+
+		 <script type="text/javascript">
+		 $("#help").click(function(){
+  $(document).foundation('joyride', 'start');
+		 });
+
+</script>
 </body>
 
 </html>
