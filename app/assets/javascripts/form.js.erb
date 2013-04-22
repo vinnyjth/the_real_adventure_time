@@ -8,6 +8,7 @@ $(function() {
   // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the person.given_name.
             focus: function(event, ui) {
                 $('#select_page').val(ui.item.title);
+                $('#link_page_id').val(ui.item.id);
                 return false;
             },
  // Once a value in the drop down list is selected, do the following:

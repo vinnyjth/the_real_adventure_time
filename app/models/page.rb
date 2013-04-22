@@ -17,7 +17,7 @@ class Page < ActiveRecord::Base
   validates :content, :presence => true
   validates :title, :presence => true
 
-  has_reputation :votes, source: :group, aggregated_by: :sum
+  has_reputation :votes, source: :group, aggregated_by: :sum, source_of: [{:reputation => :votes}]
 
   validates :title, obscenity: true
   validates :stamp, obscenity: true
@@ -29,5 +29,9 @@ class Page < ActiveRecord::Base
     else
       scoped
     end
+  end
+
+  def votes
+    self.reputation_for(:votes)
   end
 end

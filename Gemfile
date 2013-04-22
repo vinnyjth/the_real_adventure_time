@@ -6,13 +6,13 @@ gem 'obscenity'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development, :test do
   gem 'sqlite3'
-
+  gem 'faker'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
 end
 
 group :test do 
-	gem 'faker'
+	
 	gem 'cucumber-rails', :require => false
 	gem 'capybara'
 	gem 'database_cleaner'

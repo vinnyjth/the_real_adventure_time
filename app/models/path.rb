@@ -3,6 +3,8 @@ class Path < ActiveRecord::Base
 
 
   validates :question, obscenity: true
+  validates :question, presence: true
+  
   belongs_to :page_to, :class_name => "Page"
   belongs_to :page_from, :class_name => "Page"
 end

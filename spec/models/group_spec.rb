@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Page do
-	it 'is valid with a title and content' do
+describe Group do
+	it 'is valid with a name and email and password' do
 		expect(build(:page)).to be_valid
 	end
-	it 'is not valid without title' do
+	it 'is not valid without name' do
 		expect(build(:page, :title => nil)).to have(1).errors_on(:title)
 	end
-	it 'is not valid without content' do 
+	it 'is not valid without email' do 
 		expect(build(:page, :content => nil)).to have(1).errors_on(:content)
 	end
 
@@ -25,20 +25,4 @@ describe Page do
 
 		expect(Page.search("co")).to include(page1)
 	end
-	describe 'linking pages to pages' do 
-
-		before :each do 
-			@page1 = create(:page)
-			@page2 = create(:page)
-		end
-		it 'is invalid wihout question' do
-
-			expect(@page1.paths.build(page_to_id: @page2.id)).to_not be_valid
-		end
-
-		it 'is valid with question' do 
-			expect(@page1.paths.build(page_to_id: @page2.id, question: "How are you today")).to be_valid
-		end
-	end
-
 end

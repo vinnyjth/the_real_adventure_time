@@ -25,10 +25,14 @@ class User < ActiveRecord::Base
   
   validates :name, obscenity: true
   validates :profile, obscenity: true
+
+  has_reputation :votes, source: {reputation: :votes, of: :groups}, aggregated_by: :sum
+  
   def create_first_group
     @Group = Group.create(title: self.name + "'s group", description: "The default group for " + self.name)
     self.groups << @Group
   end
+
   def self.search(search)
     if search
       where('name ILIKE ?', "%#{search}%")

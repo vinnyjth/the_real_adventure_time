@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
   def index
     if params[:term]
-      @pages = Page.find(:all,:conditions => ['title ILIKE ?', "%#{params[:term]}%"])
+      @pages = Page.search(params[:term])
     else
       @search = Page.search(params[:search]).find_with_reputation(:votes, :all, { :order => 'votes DESC' })
       @pages =  Kaminari.paginate_array(@search).page(params[:page])
@@ -22,7 +22,7 @@ class PagesController < ApplicationController
   def vote
     value = params[:type] == "up" ? 1 : -1
     @page = Page.find(params[:id])
-    @page.add_or_update_evaluation(:votes, value, @page.group)
+    @page.add_or_update_evaluation(:votes, value, current_user)
     redirect_to :back, notice: "Thank you for voting!"
   end
 

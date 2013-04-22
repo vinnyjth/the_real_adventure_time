@@ -17,11 +17,7 @@
         <tr>
         <td><%= user.name %></td>
         <td><%= image_tag avatar_url(user) %></td>
-        <td><% sum_score = 0 %>
-          <% user.groups.each do |group| %> 
-            <% sum_score += group.reputation_for(:votes) %>
-          <% end %>
-          <%= sum_score.to_i %>
+        <td><%= user.reputation_for(:votes).to_i %>
         </td>
         <td><%= link_to 'Show', user %></td>
         <td></td>
