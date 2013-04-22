@@ -17,7 +17,7 @@
         <tr>
         <td><%= user.name %></td>
         <td><%= image_tag avatar_url(user) %></td>
-        <td><%= user.reputation_for(:votes).to_i %>
+        <td><%= user.votes.to_i %>
         </td>
         <td><%= link_to 'Profile', user %></td>
         <td></td>

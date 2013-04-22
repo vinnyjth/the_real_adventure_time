@@ -25,10 +25,13 @@ test: &test
   host: localhost
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: mandel_production
   pool: 5
-  timeout: 5000
+  username: vincentwilson
+  password:
+  host: localhost
 
 cucumber:
   <<: *test
