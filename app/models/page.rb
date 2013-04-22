@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
 
-  attr_accessible :content, :stamp, :title, :paths_attributes, :group_id
+  attr_accessible :content, :stamp, :title, :paths_attributes, :group_id, :color
 
 
   has_many :reverse_paths, :class_name => :Path, :foreign_key => :page_from_id, :dependent => :destroy

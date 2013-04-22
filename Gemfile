@@ -39,10 +39,12 @@ end
 gem 'rspec-rails'
 gem 'devise'
 gem 'tinymce-rails'
+gem 'spectrum-rails'
 gem 'ruby-bbcode'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'kaminari'
+
 gem 'activerecord-reputation-system'
 gem 'pg'
 

@@ -173,6 +173,8 @@ GEM
       rubyzip
       websocket (~> 1.0.4)
     slop (3.4.4)
+    spectrum-rails (1.0.9)
+      railties (~> 3.1)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -223,6 +225,7 @@ DEPENDENCIES
   rspec-rails
   ruby-bbcode
   sass-rails (~> 3.2.3)
+  spectrum-rails
   sqlite3
   tinymce-rails
   uglifier (>= 1.0.3)

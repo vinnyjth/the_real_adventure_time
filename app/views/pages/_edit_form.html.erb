@@ -18,6 +18,10 @@
       <% end %>
 
   <% end %>
+  <% if current_user.admin? %>
+    <%= f.label :color %>
+    <%= f.text_field :color, :class => "color-picker" %>
+  <% end %>
 <div class="actions">
   <%= f.submit %>
 </div>

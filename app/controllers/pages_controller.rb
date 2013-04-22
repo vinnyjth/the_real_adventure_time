@@ -46,7 +46,8 @@ class PagesController < ApplicationController
       :rating => page.reputation_for(:votes),
       :id => page.id,
       :name => page.title,
-      :group => 1      
+      :group => 1,      
+      :color => page.color
     }
   end
 
@@ -62,15 +63,15 @@ class PagesController < ApplicationController
     :target => @node_helper.index(path.page_to_id),
     :value => path.id
   }
-  end
-  respond_to do |format|
+end
+respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => {
         :nodes => @nodes,
         :links => @links
-              }
-
       }
+
+    }
   end
 end
 
@@ -91,8 +92,8 @@ end
           format.html # new.html.erb
           format.json { render :json => @page }
         end
+      end
     end
-  end
 
   # GET /pages/1/edit
   def edit
@@ -143,26 +144,30 @@ end
       format.json { head :no_content }
     end
   end
+
   private
+
   def check_ownership
     @page = Page.find(params[:id])
-    unless @page.group.users.all.include? current_user || current_user.admin?
-      flash[:error] = "You do not belong to the group that owns this page. Sorry bud :("
-        redirect_to @page
+    if !current_user.admin?
+      unless @page.group.users.all.include? current_user 
+        flash[:error] = "You do not belong to the group that owns this page. Sorry bud :("
+          redirect_to @page
       end
     end
+  end
 
-    def check_branch_access
-      if params.has_key?(:root_id)
-        @root = Page.find(params[:root_id])
-        if @root.editable == false
-          if !current_user.admin?
+  def check_branch_access
+    if params.has_key?(:root_id)
+      @root = Page.find(params[:root_id])
+      if @root.editable == false
+        if !current_user.admin?
           unless (@root.group.users.all.include?(current_user)) 
             flash[:error] = "You don't own the node page. Try creating your own node!"
             redirect_to @root
           end
         end
-        end
       end
     end
   end
+end

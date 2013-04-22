@@ -12,5 +12,6 @@
  *= require foundation_and_overrides
  *= require jquery.ui.all
  *= require custom
+ *= require spectrum
  *= require_tree .
  */

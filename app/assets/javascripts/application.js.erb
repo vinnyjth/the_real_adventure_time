@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require foundation
 //= require form
+//= require spectrum
 //= require_tree .
 
 $(document).foundation();
@@ -28,5 +29,10 @@ $(function() {
 		return false;
 	});
   });
-	 // Below is the name of the textfield that will be autocomplete 
+$(".color-picker").spectrum({
+	showPalette: true,
+    palette: [
+        ['black', '#2ba6cb', 'yellow']
+    ]
+});
 
