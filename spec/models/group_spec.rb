@@ -25,4 +25,17 @@ describe Group do
 
 		expect(Page.search("co")).to include(page1)
 	end
+
+	describe 'groups recieving votes' do 
+
+		before :each do 
+			@voter = create(:user)
+			@page = create(:page)
+			@group = @page.group
+		end
+
+		it 'is incrementing vote count when groups page is voted for ' do
+			expect { @page.add_or_update_evaluation(:votes, 2, @voter) }.to change{@group.votes}.by(2)
+		end
+	end
 end

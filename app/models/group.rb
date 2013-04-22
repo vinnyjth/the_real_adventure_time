@@ -10,7 +10,7 @@ class Group < ActiveRecord::Base
   validates :title, obscenity: true
   validates :description,  obscenity: { sanitize: true, replacement: :default}
 
-  has_reputation :votes, source: {reputation: :votes, of: :pages}, aggregated_by: :sum, source_of: [{:reputation => :votes, :of => :user}]
+  has_reputation :votes, source: {reputation: :votes, of: :pages}, aggregated_by: :sum, source_of: [{:reputation => :votes, :of => :users}]
 
   def votes
     self.reputation_for(:votes)

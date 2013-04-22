@@ -31,4 +31,17 @@ describe User do
 
 		expect(User.search("joh")).to include(john)
 	end
+
+	describe 'users recieving votes' do 
+		before :each do 
+			@user = create(:user)
+			@voter = create(:user)
+			@page = create(:page)
+			#@page.group.users << @user
+		end
+
+		it 'is incrementing vote count when users page is voted for ' do
+			expect { @page.add_or_update_evaluation(:votes, 1, @voter ) }.to change{@user.votes}.by(1)
+		end
+	end
 end
