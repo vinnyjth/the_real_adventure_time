@@ -7,4 +7,6 @@ class Path < ActiveRecord::Base
   
   belongs_to :page_to, :class_name => "Page"
   belongs_to :page_from, :class_name => "Page"
+
+  belongs_to :user
 end
