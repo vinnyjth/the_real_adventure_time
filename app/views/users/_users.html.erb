@@ -6,7 +6,7 @@
           <th> Name </th>
           <th></th>
           <th>Rank</th>
-          <th>Actions </th>
+          <th></th>
           <% if current_user %>
           <% if current_user.admin? %>
             <th></th>
@@ -19,7 +19,7 @@
         <td><%= image_tag avatar_url(user) %></td>
         <td><%= user.reputation_for(:votes).to_i %>
         </td>
-        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Profile', user %></td>
         <td></td>
         <% if current_user %>
         <% if current_user.admin? %>

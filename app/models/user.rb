@@ -40,4 +40,8 @@ class User < ActiveRecord::Base
       scoped
     end
   end
+
+  def votes
+    self.reputation_for(:votes)
+  end
 end

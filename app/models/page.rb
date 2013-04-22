@@ -17,7 +17,7 @@ class Page < ActiveRecord::Base
   validates :content, :presence => true
   validates :title, :presence => true
 
-  has_reputation :votes, source: :group, aggregated_by: :sum, source_of: [{:reputation => :votes}]
+  has_reputation :votes, source: :user, aggregated_by: :sum, source_of: [{:reputation => :votes, :of => :group}]
 
   validates :title, obscenity: true
   validates :stamp, obscenity: true

@@ -41,4 +41,21 @@ describe Page do
 		end
 	end
 
+	describe 'voting for pages' do
+		before :each do 
+			@page = create(:page)
+			@user = create(:user)
+		end
+
+		it 'is valid when votes are called' do
+			@page.votes.should be_a_kind_of(Numeric)
+		end
+
+		it 'is valid when user votes for page' do
+			expect {@page.add_or_update_evaluation(:votes, 1, @user)}.to change{@page.votes}.by(1)
+		end
+
+
+	end
+
 end

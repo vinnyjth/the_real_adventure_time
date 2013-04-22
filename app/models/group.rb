@@ -11,4 +11,8 @@ class Group < ActiveRecord::Base
   validates :description,  obscenity: { sanitize: true, replacement: :default}
 
   has_reputation :votes, source: {reputation: :votes, of: :pages}, aggregated_by: :sum
+
+  def votes
+    self.reputation_for(:votes)
+  end
 end
