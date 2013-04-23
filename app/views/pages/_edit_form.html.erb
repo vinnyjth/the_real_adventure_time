@@ -13,7 +13,7 @@
     <%= f.fields_for :paths do |path_builder| %>
 
       <br />
-        <%= path_builder.label :question, "The statment that links this page to the previous page: " %>
+        <%= path_builder.label :question, "The statment that links this page to the previous page: " + path_builder.to_s %>
         <%= path_builder.text_field :question %>
       <% end %>
 

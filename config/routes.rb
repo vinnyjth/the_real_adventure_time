@@ -11,7 +11,9 @@ TheRealAdventureTime::Application.routes.draw do
   resources :groups do
     collection do
       post '/add_user_to_group', :as => :add_user_to_group
+
     end
+    member {put :remove_user_from_group}
   end
   devise_for :users
 

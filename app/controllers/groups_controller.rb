@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :check_ownership, :only => [:destroy, :update, :edit]
+  before_filter :check_ownership, :only => [:destroy, :update, :edit, :remove_user_from_group]
   # GET /groups
   # GET /groups.json
   def index
@@ -37,7 +37,6 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
-    @users = User.paginate(:page => params[:page])
   end
 
   # POST /groups
@@ -87,6 +86,13 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  end
+
+  def remove_user_from_group 
+    @group = Group.find(params[:id])
+    @user = User.find(params[:user])
+    Membership.find_by_user_id(params[:user]).destroy 
+    redirect_to :back
   end
 
     private

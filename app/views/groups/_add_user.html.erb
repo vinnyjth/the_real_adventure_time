@@ -1,0 +1,13 @@
+	<ul id="groups" class="f-dropdown">
+		<p>
+	<% if @user != current_user %>
+	<%= form_tag({:controller => "users", :action => "add_user_to_group"}, :method => "post") %>
+		<% current_user.groups.each do |group| %>
+			<li><%= radio_button_tag(:group, group.id) %></li>
+			<li><%= label_tag(group.title) %></li>
+		<% end %>
+		<%= hidden_field_tag(:user, @user.id) %>
+		<li> <%= submit_tag("Submit") %> </li>
+	<% end %>
+</p>
+	</ul>

@@ -5,8 +5,6 @@ class Group < ActiveRecord::Base
   has_many :memberships
   has_many :users, :through => :memberships
 
-  belongs_to :user
-
   validates :title, obscenity: true
   validates :description,  obscenity: { sanitize: true, replacement: :default}
 

@@ -19,6 +19,15 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+  <p>
+  <ul>
+  <% @group.users.each do |user| %>
+  <li>
+    <%= link_to user.name, user %> | <%= link_to "Remove user from group", remove_user_from_group_group_path(@group, :user => user.id), :method => :put, :user => user.id %>
+  </li>
+  <% end %>
+  </ul>
+</p>
   <div class="actions">
     <%= f.submit %>
   </div>
