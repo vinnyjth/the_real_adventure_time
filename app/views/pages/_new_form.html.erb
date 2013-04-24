@@ -4,7 +4,7 @@
   
     <%= f.fields_for :paths do |builder| %>
       <div class="field" id="path-field">
-        <%= builder.label :question %><br />
+        <%= builder.label :question, "The statment that links this page to the previous page" %><br />
         <%= builder.text_field :question   %>
         <%= builder.hidden_field :page_from_id, :value => @root.id %>
       </div>

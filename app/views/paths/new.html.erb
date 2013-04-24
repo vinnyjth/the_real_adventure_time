@@ -12,7 +12,7 @@
       <input id="link_page_id" name="path[page_to_id]" type="hidden"/>
   </p>
   <p>
-    <%= f.label :question %><br />
+    <%= f.label :question, "The statement you want to link the following page to the next page" %><br />
     <%= f.text_field :question %>
     <%= f.hidden_field :page_from_id, :value => @root.id %>
   <p>
