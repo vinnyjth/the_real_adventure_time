@@ -1,5 +1,5 @@
 class Page < ActiveRecord::Base
-
+  include ActiveModel::ForbiddenAttributesProtection
   attr_accessible :content, :stamp, :title, :paths_attributes, :group_id, :color
 
 
