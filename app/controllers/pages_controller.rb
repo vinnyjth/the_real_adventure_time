@@ -12,6 +12,10 @@ class PagesController < ApplicationController
       @search = Page.search(params[:search]).find_with_reputation(:votes, :all, { :order => 'votes DESC' })
       @pages =  Kaminari.paginate_array(@search).page(params[:page])
     end
+
+    if params[:user] 
+      @pages = User.find(params[:user]).pages.page(params[:page])
+    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -104,7 +108,7 @@ end
   # POST /pages
   # POST /pages.json
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(allowed_attributes)
     @pages = Page.all
     @page.group = Group.find(params[:group_id])
     respond_to do |format|
@@ -123,7 +127,7 @@ end
   def update
     @page = Page.find(params[:id])
     respond_to do |format|
-      if @page.update_attributes(params[:page])
+      if @page.update_attributes(allowed_attributes)
         format.html { redirect_to @page, :notice => 'Page was successfully updated.' }
         format.json { head :no_content }
       else
@@ -169,5 +173,13 @@ end
         end
       end
     end
+  end
+
+  def allowed_attributes
+    if current_user.admin == true
+      params.require(:page).permit!
+    else 
+      params.require(:page).permit(:content, :stamp, :title, :paths_attributes, :group_id)
+    end 
   end
 end

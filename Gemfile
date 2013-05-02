@@ -37,6 +37,7 @@ group :assets do
 
   gem 'zurb-foundation', '~> 4.0.0'
 end
+
 gem 'rspec-rails'
 gem 'devise'
 gem 'tinymce-rails'
