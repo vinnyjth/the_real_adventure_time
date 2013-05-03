@@ -1,4 +1,4 @@
-
+<% if current_user %>
 <%= form_tag(add_user_to_group_path, :method => "post") do %>
   <% current_user.groups.each_with_index do |group, i| %>
         <% if i == 0 %> 
@@ -9,4 +9,5 @@
           <%= radio_button_tag :group_id, group.id %>
         <% end %>
     <% end %>
+<% end %>
 <% end %>
